@@ -1,5 +1,5 @@
 import sqlite3
-
+import json
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
@@ -37,7 +37,22 @@ def init_db_command():
     init_db()
     click.echo('Initialized the database.')
 
+@click.command('seed-db')
+@with_appcontext
+def seed_db_command():
+    db = get_db() 
+    with open('codloadouts/seed_data.json') as f:
+        data = json.load(f) 
+
+        click.echo("Seeding attachments...")
+        for attachment in data["attachments"]:
+            db.execute('INSERT INTO attachment (attachment_type, attachment_name) VALUES (?, ?)', (attachment["type"], attachment["name"]))
+        
+        db.commit()
+    click.echo("Seeding complete")
+
 # function that registers the database with Flask object
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(seed_db_command)
