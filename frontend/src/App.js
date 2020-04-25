@@ -5,6 +5,7 @@ import './App.css';
 import {Route, Link, BrowserRouter as Router, Switch} from 'react-router-dom'
 import testDash from "./components/test/testDash";
 import Home from "./views/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
