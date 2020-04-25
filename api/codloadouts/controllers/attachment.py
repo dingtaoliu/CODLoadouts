@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 from codloadouts import db
 from codloadouts.models.attachment import Attachment
 
-bp = Blueprint('api.attachment', __name__, url_prefix='/api/attachment')
+bp = Blueprint('api.attachment', __name__, url_prefix='/api/attachments')
 
 # route to get all equipments
 @bp.route('/', methods=['GET'])
@@ -68,7 +68,6 @@ def modify_attachment(id):
 
         db.session.commit()
 
-        equipment = get_equipment(id)
     elif request.method == 'DELETE':
         db.session.delete(attachment)
         db.session.commit()

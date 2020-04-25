@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import {Route, Link, BrowserRouter as Router, Switch} from 'react-router-dom'
-import testDash from "./components/test/testDash";
+import TestDash from "./components/test/testDash";
 import Home from "./views/Home";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/test" exact component={testDash} />
+          <Route path="/test" exact component={TestDash} />
         </Switch>
       </Router>
     </div>
