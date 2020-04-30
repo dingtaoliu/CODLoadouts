@@ -4,7 +4,7 @@ from flask import (
 from werkzeug.exceptions import abort
 
 from codloadouts import db
-from codloadouts.models.attachment import Attachment
+from codloadouts.models.attachment import Attachment, AttachmentType
 
 bp = Blueprint('api.attachment', __name__, url_prefix='/api/attachments')
 
@@ -20,7 +20,7 @@ def all_attachments():
 @bp.route('/', methods=['POST'])
 def create_attachment():
     error = None
-    attachment_type = request.form['attachment_type']
+    attachment_type = AttachmentType[request.form['attachment_type']]
     attachment_name = request.form['attachment_name']
 
     if not attachment_type or not attachment_name:
