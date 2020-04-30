@@ -7,7 +7,7 @@ db = SQLAlchemy(app)
 from codloadouts.models.attachment import * 
 from codloadouts.models.weapon import * 
 
-a = Attachment(attachment_type='optic', attachment_name='scout')
+a = Attachment(attachment_type=AttachmentType.OPTIC, attachment_name='scout')
 w = Weapon(weapon_type=WeaponType.PRIMARY, weapon_name='scar')
 
 with app.app_context():
